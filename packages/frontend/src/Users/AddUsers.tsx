@@ -1,12 +1,12 @@
-import React, { useCallback } from "react";
+import { useCallback } from 'react';
 
 const addUsersBulk = async () => {
-  await fetch("http://127.0.0.1:5000/users", {
-    method: "POST",
+  await fetch('http://127.0.0.1:5000/users', {
+    method: 'POST',
   });
 };
 
-export default function AddUsers({ refetch }) {
+export default function AddUsers({ refetch }: { refetch: () => void }) {
   const onClick = useCallback(() => {
     addUsersBulk().then(refetch);
   }, [refetch]);

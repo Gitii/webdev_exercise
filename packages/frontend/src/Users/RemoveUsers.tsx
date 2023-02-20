@@ -1,12 +1,12 @@
-import React, { useCallback } from "react";
+import { useCallback } from 'react';
 
 const deleteUsersBulk = async () => {
-  await fetch("http://127.0.0.1:5000/users", {
-    method: "DELETE",
+  await fetch(`${process.env.REACT_APP_BACKEND_URL}/users`, {
+    method: 'DELETE',
   });
 };
 
-export default function RemoveUsers({ refetch }) {
+export default function RemoveUsers({ refetch }: { refetch: () => void }) {
   const onClick = useCallback(() => {
     deleteUsersBulk().then(refetch);
   }, [refetch]);

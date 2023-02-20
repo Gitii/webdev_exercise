@@ -1,0 +1,21 @@
+{
+  "name": "webdev_exercise",
+  "packageManager": "yarn@3.4.1",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "start": "concurrently -c auto --names Backend,Frontend 'yarn workspace backend start' 'yarn workspace frontend start'"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "concurrently": "^7.6.0",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "prettier": "2.8.4",
+    "typescript": "^4.9.5"
+  }
+}
