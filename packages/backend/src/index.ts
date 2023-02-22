@@ -1,5 +1,5 @@
 import initDatabaseClient from './models/initDatabaseClient';
-import { createServer } from './server';
+import createServer from './server';
 import 'reflect-metadata';
 
 async function init() {
@@ -10,12 +10,11 @@ async function init() {
   console.log('Server running on %s', server.info.uri);
 }
 
-process.on('unhandledRejection', (err) => {
-  console.log(err);
+function onError(error: unknown) {
+  console.log(error);
   process.exit(1);
-});
+}
 
-init().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+process.on('unhandledRejection', onError);
+
+init().catch(onError);

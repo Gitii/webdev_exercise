@@ -9,19 +9,14 @@ export default function (server: Server, ds: DataSource) {
     method: 'POST',
     path: '/users',
     handler: async (_request, h) => {
-      try {
-        await ds.manager.insert(
-          User,
-          range(10).map(() => ({
-            name: faker.name.fullName(),
-          })),
-        );
+      await ds.manager.insert(
+        User,
+        range(10).map(() => ({
+          name: faker.name.fullName(),
+        })),
+      );
 
-        return h.response('Users created').code(201);
-      } catch (e) {
-        console.log(e);
-        throw e;
-      }
+      return h.response({ message: 'Users created' }).code(201);
     },
   });
 }

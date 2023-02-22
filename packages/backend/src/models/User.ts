@@ -1,4 +1,5 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, ManyToMany, JoinTable } from 'typeorm';
+import Skill from './Skill';
 
 @Entity()
 export default class User {
@@ -6,7 +7,7 @@ export default class User {
     primary: true,
     generated: true,
   })
-  id: number = undefined!;
+  id!: number;
 
   @Column({
     nullable: false,
@@ -14,5 +15,11 @@ export default class User {
     type: 'varying character',
     length: 80,
   })
-  name: string = undefined!;
+  name!: string;
+
+  @ManyToMany(() => Skill, {
+    eager: true,
+  })
+  @JoinTable()
+  skills!: Skill[];
 }

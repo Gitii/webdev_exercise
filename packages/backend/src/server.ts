@@ -1,10 +1,14 @@
 import Hapi from '@hapi/hapi';
 import { DataSource } from 'typeorm';
-import setupCreateRoute from './routes/users/create';
-import setupDeleteRoute from './routes/users/delete';
-import setupGetRoute from './routes/users/get';
+import setupUserCreateRoute from './routes/users/create';
+import setupUserDeleteRoute from './routes/users/delete';
+import setupUserGetRoute from './routes/users/get';
+import setupAssignSkillsRoute from './routes/users/assignSkills';
+import setupSkillCreateRoute from './routes/skills/create';
+import setupSkillDeleteRoute from './routes/skills/delete';
+import setupSkillGetRoute from './routes/skills/get';
 
-export function createServer(ds: DataSource) {
+export default function createServer(ds: DataSource) {
   const server = Hapi.server({
     port: 3005,
     host: 'localhost',
@@ -14,9 +18,17 @@ export function createServer(ds: DataSource) {
     debug: { request: ['*'], log: '*' },
   });
 
-  setupCreateRoute(server, ds);
-  setupGetRoute(server, ds);
-  setupDeleteRoute(server, ds);
+  [
+    setupUserCreateRoute,
+    setupUserDeleteRoute,
+    setupUserGetRoute,
+    setupSkillCreateRoute,
+    setupSkillGetRoute,
+    setupSkillDeleteRoute,
+    setupAssignSkillsRoute,
+  ].forEach((setup) => {
+    setup(server, ds);
+  });
 
   return server;
 }

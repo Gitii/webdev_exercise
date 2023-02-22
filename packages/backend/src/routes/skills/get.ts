@@ -1,15 +1,13 @@
 import { Server } from '@hapi/hapi';
 import { DataSource } from 'typeorm';
-import User from '../../models/User';
+import Skill from '../../models/Skill';
 
 export default function (server: Server, ds: DataSource) {
   server.route({
-    method: 'DELETE',
-    path: '/users',
+    method: 'GET',
+    path: '/skills',
     handler: async (_request, h) => {
-      await ds.manager.clear(User);
-
-      return h.response({ message: 'Users deleted' }).code(200);
+      return h.response(await ds.manager.find(Skill)).code(200);
     },
   });
 }

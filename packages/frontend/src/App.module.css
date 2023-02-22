@@ -1,0 +1,42 @@
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 2rem auto;
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.routeContainer {
+  padding: 1rem;
+}
+
+.appbar {
+  background-color: #1d2739;
+  color: white;
+  padding-top: 1rem;
+}
+
+.appbar div {
+  background-color: steelblue;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.appbar h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: lightblue;
+}

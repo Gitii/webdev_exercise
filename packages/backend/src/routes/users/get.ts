@@ -7,12 +7,7 @@ export default function (server: Server, ds: DataSource) {
     method: 'GET',
     path: '/users',
     handler: async (_request, h) => {
-      try {
-        return h.response(await ds.manager.find(User)).code(200);
-      } catch (e) {
-        console.log(e);
-        throw e;
-      }
+      return h.response(await ds.manager.find(User)).code(200);
     },
   });
 }
