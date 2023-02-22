@@ -54,6 +54,7 @@ export default function () {
           <label htmlFor="skills">Skills: </label>
           <select
             name="skills"
+            aria-label="skills"
             multiple
             size={5}
             onChange={handleChange}

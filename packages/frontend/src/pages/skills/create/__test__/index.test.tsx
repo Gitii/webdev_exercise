@@ -19,7 +19,7 @@ describe('CreateSkill', () => {
   it('should do rest call and navigate when form is submitted', async () => {
     let called = false;
     server.use(
-      rest.post(buildEndpointUrl('/skills'), async (req, res, ctx) => {
+      rest.post(buildEndpointUrl('skills'), async (req, res, ctx) => {
         expect(await req.json()).toEqual({ name: 'foobar' });
         called = true;
         return res(ctx.status(201));

@@ -5,10 +5,10 @@ import parseResponse from './parseResponse';
 function createMutator(method: string) {
   return async function (
     path: string,
-    extraArgs?: { arg?: Record<string, unknown> },
+    extraArgs: { arg?: Record<string, unknown> },
   ) {
-    const body = isPlainObject(extraArgs?.arg)
-      ? JSON.stringify(extraArgs?.arg)
+    const body = isPlainObject(extraArgs.arg)
+      ? JSON.stringify(extraArgs.arg)
       : undefined;
     const headers: Record<string, string> = body
       ? {
