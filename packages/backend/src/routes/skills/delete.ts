@@ -18,7 +18,7 @@ export default function (server: Server, ds: DataSource) {
     handler: async (request, h) => {
       const skill = await ds.manager.findOne(Skill, {
         where: {
-          id: request.params.name as unknown as number,
+          id: request.params.id as unknown as number,
         },
       });
 

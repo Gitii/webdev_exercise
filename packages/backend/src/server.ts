@@ -7,6 +7,7 @@ import setupAssignSkillsRoute from './routes/users/assignSkills';
 import setupSkillCreateRoute from './routes/skills/create';
 import setupSkillDeleteRoute from './routes/skills/delete';
 import setupSkillGetRoute from './routes/skills/get';
+import errorHandler from './errorHandler';
 
 export default function createServer(ds: DataSource) {
   const server = Hapi.server({
@@ -15,7 +16,6 @@ export default function createServer(ds: DataSource) {
     routes: {
       cors: true,
     },
-    debug: { request: ['*'], log: '*' },
   });
 
   [
@@ -29,6 +29,8 @@ export default function createServer(ds: DataSource) {
   ].forEach((setup) => {
     setup(server, ds);
   });
+
+  server.ext('onPreResponse', errorHandler);
 
   return server;
 }

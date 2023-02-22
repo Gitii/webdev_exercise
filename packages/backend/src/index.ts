@@ -10,6 +10,7 @@ async function init() {
   console.log('Server running on %s', server.info.uri);
 }
 
+/* istanbul ignore next */
 function onError(error: unknown) {
   console.log(error);
   process.exit(1);

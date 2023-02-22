@@ -26,7 +26,9 @@ const customRender = (
 ) => {
   const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
     return (
-      <SWRConfig value={{ provider: () => new Map() }}>
+      <SWRConfig
+        value={{ provider: () => new Map(), revalidateIfStale: false }}
+      >
         <MemoryRouter initialEntries={pathName ? [pathName] : undefined}>
           {children}
           <LocationDisplay />

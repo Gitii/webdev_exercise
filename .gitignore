@@ -5,5 +5,6 @@ __pycache__/
 
 .idea/
 node_modules/
+coverage/
 .yarn/
 !.yarn/releases/yarn-3.4.1.cjs

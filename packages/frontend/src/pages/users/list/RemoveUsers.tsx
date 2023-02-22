@@ -5,10 +5,8 @@ export default function RemoveUsers({ refetch }: { refetch: () => void }) {
   const { mutate, isMutating } = useRemoveUsers(refetch);
 
   return (
-    <>
-      <Button disabled={isMutating} onClick={mutate}>
-        Remove All Users
-      </Button>
-    </>
+    <Button disabled={isMutating} onClick={mutate}>
+      Remove All Users
+    </Button>
   );
 }
