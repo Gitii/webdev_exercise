@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import useRemoveUsers from '../../../api/useRemoveUsers';
 import Button from '../../../components/Button';
 import ErrorView from '../../../components/ErrorView';

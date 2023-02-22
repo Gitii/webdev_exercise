@@ -9,7 +9,7 @@ export default function (server: Server, ds: DataSource) {
     handler: async (_request, h) => {
       await ds.manager.clear(User);
 
-      return h.response({ message: 'Users deleted' }).code(200);
+      return h.response().code(201);
     },
   });
 }

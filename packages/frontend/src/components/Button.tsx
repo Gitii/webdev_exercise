@@ -20,5 +20,9 @@ export default function Button({ children, theme, ...props }: Props) {
 }
 
 export function ButtonContainer({ children }: { children: React.ReactNode }) {
-  return <div className={styles.container}>{children}</div>;
+  return (
+    <div role="menubar" className={styles.container}>
+      {children}
+    </div>
+  );
 }

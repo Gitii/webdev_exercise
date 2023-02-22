@@ -37,6 +37,7 @@ export default function () {
           <label htmlFor="name">Name: </label>
           <input
             name="name"
+            aria-label="name"
             maxLength={80}
             required
             value={name}

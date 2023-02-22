@@ -16,7 +16,7 @@ export default function (server: Server, ds: DataSource) {
         })),
       );
 
-      return h.response({ message: 'Users created' }).code(201);
+      return h.response().code(201);
     },
   });
 }

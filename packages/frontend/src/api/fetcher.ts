@@ -1,12 +1,6 @@
-export default async function fetcher(path: string) {
-  const cleanPath = path.startsWith('/') ? path.substring(1) : path;
+import buildEndpointUrl from './endpoint';
+import parseResponse from './parseResponse';
 
-  const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/${cleanPath}`);
-  if (!res.ok) {
-    throw new Error('network error', {
-      cause: res.json(),
-    });
-  }
-
-  return res.json();
+export default async function fetcher(path: string): Promise<any> {
+  return await parseResponse(await fetch(buildEndpointUrl(path)));
 }

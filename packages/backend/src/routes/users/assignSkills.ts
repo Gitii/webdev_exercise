@@ -37,9 +37,9 @@ export default function (server: Server, ds: DataSource) {
       }
 
       user.skills = skills;
-      console.log(await ds.manager.save(user), user, skillIds);
+      await ds.manager.save(user);
 
-      return h.response({ message: 'Skills assigned' }).code(201);
+      return h.response().code(201);
     },
   });
 }

@@ -3,8 +3,8 @@ import { ButtonContainer } from '../../../components/Button';
 import ErrorView from '../../../components/ErrorView';
 import Table from '../../../components/Table';
 import Skill from '../../../schema/Skill';
-import CreateSkill from './CreateSkill';
-import DeleteSkill from './DeleteSkill';
+import CreateSkillButton from './CreateSkillButton';
+import DeleteSkill from './DeleteSkillButton';
 
 export default function () {
   const { skills, error, refetch } = useSkills();
@@ -12,11 +12,11 @@ export default function () {
   if (error) {
     return <ErrorView error={error} />;
   }
-
+  
   return (
     <div>
       <ButtonContainer>
-        <CreateSkill />
+        <CreateSkillButton />
       </ButtonContainer>
       <Table<Skill>
         header={['Id', 'Name', 'Actions']}

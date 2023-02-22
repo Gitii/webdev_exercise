@@ -12,8 +12,8 @@ export default function Table<T>(props: Props<T>) {
     <table className={styles.styled}>
       <thead>
         <tr>
-          {props.header.map((h) => (
-            <th key={String(h)}>{h}</th>
+          {props.header.map((h, i) => (
+            <th key={`${i}-${String(h)}`}>{h}</th>
           ))}
         </tr>
       </thead>

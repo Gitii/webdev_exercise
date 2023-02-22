@@ -1,12 +1,12 @@
 import { isPlainObject } from 'lodash';
+import buildEndpointUrl from './endpoint';
+import parseResponse from './parseResponse';
 
 function createMutator(method: string) {
   return async function (
     path: string,
     extraArgs?: { arg?: Record<string, unknown> },
   ) {
-    const cleanPath = path.startsWith('/') ? path.substring(1) : path;
-
     const body = isPlainObject(extraArgs?.arg)
       ? JSON.stringify(extraArgs?.arg)
       : undefined;
@@ -16,24 +16,13 @@ function createMutator(method: string) {
         }
       : {};
 
-    const res = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/${cleanPath}`,
-      {
+    return await parseResponse(
+      await fetch(buildEndpointUrl(path), {
         method: method,
         body,
         headers,
-      },
+      }),
     );
-
-    if (!res.ok) {
-      throw new Error('network error', {
-        cause: res.json(),
-      });
-    }
-
-    if (res.headers.get('Content-Type') === 'application/json') {
-      return res.json();
-    }
   };
 }
 
