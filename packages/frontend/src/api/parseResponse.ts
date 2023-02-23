@@ -10,7 +10,7 @@ export default async function parseResponse(
     : undefined;
 
   if (!res.ok) {
-    throw new Error(String(responseBody?.['message'] ?? 'Unknown Error'));
+    throw new Error(String(responseBody?.message ?? 'Unknown Error'));
   }
 
   return responseBody;

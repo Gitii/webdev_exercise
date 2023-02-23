@@ -16,9 +16,9 @@ function LocationDisplay() {
   return <div data-testid={LOCATION_DISPLAY_TEST_ID}>{location.pathname}</div>;
 }
 
-type Options = {
+interface Options {
   pathName?: string;
-};
+}
 
 const customRender = (
   ui: React.ReactElement,

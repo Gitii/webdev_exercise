@@ -22,7 +22,7 @@ export default function () {
     (e: FormEvent) => {
       e.preventDefault();
 
-      mutate({
+      void mutate({
         name,
       });
     },

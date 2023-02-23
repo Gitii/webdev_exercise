@@ -7,7 +7,7 @@ export default function SkillFilter({
   options,
 }: {
   value: number | undefined;
-  options: Array<{ id: number; name: string }>;
+  options: { id: number; name: string }[];
   onChange: (n: number | undefined) => void;
 }) {
   const handleChange = useCallback(

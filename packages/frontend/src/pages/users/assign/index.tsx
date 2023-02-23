@@ -30,7 +30,7 @@ export default function () {
     (e: FormEvent) => {
       e.preventDefault();
 
-      mutate({
+      void mutate({
         skillIds: selectedSkills.map(Number),
       });
     },

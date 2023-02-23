@@ -6,7 +6,7 @@ import { postMutator as mutator } from './mutator';
 export default function useAssignSkill(userId: number, onSuccess: () => void) {
   const { mutate: invalidateCache } = useSWRConfig();
   const handleSuccess = useCallback(() => {
-    invalidateCache('/users');
+    void invalidateCache('/users');
     onSuccess();
   }, [onSuccess]);
   const { trigger, error, isMutating, reset } = useSWRMutation(
