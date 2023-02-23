@@ -12,7 +12,7 @@ export default function errorHandler(request: Request, h: ResponseToolkit) {
 
   if (response instanceof QueryFailedError) {
     if (response.message.includes('UNIQUE constraint failed')) {
-      return Boom.conflict();
+      return Boom.conflict('That one already exists!');
     }
   }
 

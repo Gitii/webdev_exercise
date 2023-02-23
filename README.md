@@ -27,7 +27,8 @@ Our customer-success department is missing functionality to group users based on
 The challenge defines a single acceptance criteria and a general background.
 Because this challenge is about primitive CRUD and a basic UI, I've added CRUD for skills and kept the UI functional. 
 * Several Skills can be linked to several users at once. 
-* Deleting a skill will also remove the assignment. 
+* Any number of unique skills can be created. If the user tries to create a duplicate skill, an error will be shown and the user needs to change the name.
+* Deleting a skill will also remove any assignments.
 * It's not possible to rename a skill after creation. 
 * Any number of skills can be assigned to a user. 
 * The list of users can be filter by a skill.
@@ -38,6 +39,9 @@ Because this challenge is about primitive CRUD and a basic UI, I've added CRUD f
 * Execute `yarn` in the root folder of repository to install all dependencies
 * Execute `yarn start` in the root folder of repository to start both frontend and backend in parallel
 * Execute `yarn test` in the root folder of repository to execute all tests in sequence
+
+**Remarks**
+`react-scripts` [doesn't support node >=18 out of the box](https://github.com/facebook/create-react-app/issues/12977). Please use node 16. Previous versions of node are still supported but even node 16 will be eol in 6 months.
 
 ### Design considerations
 * I have opted for a node.js backend implementation because I am not familiar enough with the used python frameworks
@@ -59,9 +63,6 @@ Because this challenge is about primitive CRUD and a basic UI, I've added CRUD f
     * `typeorm` is used as orm. Because of the simple data schema, I opted for a basic orm setup, including eager loading of entities.
 
 Backend and Frontend can be started individually by executing the `start` script of packages. Same for the tests.
-
-**Remarks**
-* `react-scripts` [doesn't support node >=18 out of the box](https://github.com/facebook/create-react-app/issues/12977). Please use node 16. Previous versions of node are still supported but even node 16 will be eol in 6 months.
 
 ## Possible future steps
 * Use a third party library for UI components (for example Material UI)
