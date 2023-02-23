@@ -72,3 +72,4 @@ Backend and Frontend can be started individually by executing the `start` script
 * Replace `jest` with `vitest`. Idearly both `vite` and `vitest` are used. We had really good experience with both.
 * To improve UX, improve error handling by showing all errors and provide exact error messages. 
 * Instead of showing cached data to increase responsiveness, use placeholders or spinners to indicate that something is happening.
+* Add dockerfile to build and ship both backend and frontend
