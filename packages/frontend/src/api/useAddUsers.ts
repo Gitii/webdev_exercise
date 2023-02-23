@@ -7,6 +7,7 @@ export default function useAddUsers(onSuccess: () => void) {
   const { trigger, error, isMutating } = useSWRMutation('/users', mutator, {
     onSuccess: handleSuccess,
     throwOnError: false,
+    revalidate: true,
   });
   const mutate = useCallback(() => trigger(), [trigger]);
 
