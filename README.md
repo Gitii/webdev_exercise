@@ -61,7 +61,7 @@ Because this challenge is about primitive CRUD and a basic UI, I've added CRUD f
 Backend and Frontend can be started individually by executing the `start` script of packages. Same for the tests.
 
 **Remarks**
-* `react-scripts` doesn't support node >=18. Please use node 16. 
+* `react-scripts` [doesn't support node >=18 out of the box](https://github.com/facebook/create-react-app/issues/12977). Please use node 16. Previous versions of node are still supported but even node 16 will be eol in 6 months.
 
 ## Possible future steps
 * Use a third party library for UI components (for example Material UI)
