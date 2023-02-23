@@ -34,6 +34,11 @@ Because this challenge is about primitive CRUD and a basic UI, I've added CRUD f
 
 ## Setup
 
+### Getting Started & Usage
+* Execute `yarn` in the root folder of repository to install all dependencies
+* Execute `yarn start` in the root folder of repository to start both frontend and backend in parallel
+* Execute `yarn test` in the root folder of repository to execute all tests in sequence
+
 ### Design considerations
 * I have opted for a node.js backend implementation because I am not familiar enough with the used python frameworks
 * Both backend and frontend are written in *Typescript* and have a *100% test coverage*. Some parts are only covered indirectly, but I think that's sufficient for this challenge. 
@@ -50,13 +55,8 @@ Because this challenge is about primitive CRUD and a basic UI, I've added CRUD f
     * `hapi.js` is used as web server framework. Routes are put into `routes/*` and each handler is in a separate file. Database source is passed down during setup.
     * Error handling is basic, yet simple. There is a very simple global `errorHandler` to catch sql constraint errors. The error handling should be moved to the individual route instead as soon as complexity of the routes increases.
     * Tests are written as integration tests. Hapi allows to "inject" requests. That is used to validate the handlers are working as expected.
-    * An in-memory database is used. Ideally this is moved out of the package and is provided as part of the development infrastructure (for example as docker container).
+    * An in-memory database is used. Ideally this is moved out of the package and is provided as part of the development infrastructure (for example as docker container). Currently, the database will be dropped on each start of the backend. 
     * `typeorm` is used as orm. Because of the simple data schema, I opted for a basic orm setup, including eager loading of entities.
-
-### Getting Started & Usage
-* Execute `yarn` in the root folder of repository to install all dependencies
-* Execute `yarn start` in the root folder of repository to start both frontend and backend in parallel
-* Execute `yarn test` in the root folder of repository to execute all tests in sequence
 
 Backend and Frontend can be started individually by executing the `start` script of packages. Same for the tests.
 
@@ -69,3 +69,5 @@ Backend and Frontend can be started individually by executing the `start` script
 * Replace the in-memory database with a dockerized database (for development only). That decouples database & backend and enables future optimizations (layering of infrastructure).
 * Replace `react-scripts` with `vite` (it's faster and easier to use)
 * Replace `jest` with `vitest`. Idearly both `vite` and `vitest` are used. We had really good experience with both.
+* To improve UX, improve error handling by showing all errors and provide exact error messages. 
+* Instead of showing cached data to increase responsiveness, use placeholders or spinners to indicate that something is happening.
