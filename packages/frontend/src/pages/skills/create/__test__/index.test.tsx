@@ -7,6 +7,7 @@ import {
 } from '../../../../test/test-utils';
 import { rest } from 'msw';
 import buildEndpointUrl from '../../../../api/endpoint';
+import { act } from 'react-dom/test-utils';
 
 describe('CreateSkill', () => {
   it('should render form for skill creation', () => {
@@ -32,13 +33,15 @@ describe('CreateSkill', () => {
 
     await user.type(screen.getByRole('textbox'), 'foobar');
 
-    await user.click(screen.getByRole('button'));
+    await act(async () => {
+      await user.click(screen.getByRole('button'));
 
-    await waitFor(() =>
-      expect(screen.getByTestId(LOCATION_DISPLAY_TEST_ID)).toHaveTextContent(
-        /^[/]skills$/,
-      ),
-    );
+      await waitFor(() =>
+        expect(screen.getByTestId(LOCATION_DISPLAY_TEST_ID)).toHaveTextContent(
+          /^[/]skills$/,
+        ),
+      );
+    });
 
     expect(called).toBe(true);
   });
@@ -59,16 +62,18 @@ describe('CreateSkill', () => {
 
     await user.type(screen.getByRole('textbox'), 'foobar');
 
-    await user.click(screen.getByRole('button'));
+    await act(async () => {
+      await user.click(screen.getByRole('button'));
 
-    expect(await screen.findByRole('alert')).toHaveTextContent(
-      'An error has occurred!',
-    );
+      expect(await screen.findByRole('alert')).toHaveTextContent(
+        'An error has occurred!',
+      );
+    });
 
     expect(screen.getByTestId(LOCATION_DISPLAY_TEST_ID)).toHaveTextContent(
       /^\/skills\/create$/,
-    ),
-      expect(called).toBe(true);
+    );
+    expect(called).toBe(true);
 
     expect(screen.getByRole('contentinfo')).toHaveTextContent('Boom!');
   });

@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import buildEndpointUrl from '../../../../api/endpoint';
 import {
@@ -70,11 +70,13 @@ describe('ListSkills', () => {
     );
     const { user } = render(<SkillList />, { pathName: '/skills' });
 
-    await user.click(screen.getByRole('button', { name: 'Create Skill' }));
+    await act(async () => {
+      await user.click(screen.getByRole('button', { name: 'Create Skill' }));
 
-    expect(
-      await screen.findByTestId(LOCATION_DISPLAY_TEST_ID),
-    ).toHaveTextContent(/^\/skills\/create$/);
+      expect(
+        await screen.findByTestId(LOCATION_DISPLAY_TEST_ID),
+      ).toHaveTextContent(/^\/skills\/create$/);
+    });
   });
 
   it('should delete skill when delete button is pressed', async () => {
@@ -95,8 +97,10 @@ describe('ListSkills', () => {
 
     await waitFor(() => screen.getByRole('button', { name: 'Delete' }));
 
-    await user.click(screen.getByRole('button', { name: 'Delete' }));
+    await act(async () => {
+      await user.click(screen.getByRole('button', { name: 'Delete' }));
 
-    await waitFor(() => expect(deleted).toBe(true));
+      await waitFor(() => expect(deleted).toBe(true));
+    });
   });
 });

@@ -15,6 +15,7 @@ import { rest } from 'msw';
 import buildEndpointUrl from '../../../../api/endpoint';
 import Skill from '../../../../schema/Skill';
 import { useParams } from 'react-router-dom';
+import { act } from 'react-dom/test-utils';
 
 const mockedUseParams = useParams as jest.MockedFunction<typeof useParams>;
 
@@ -91,13 +92,15 @@ describe('AssignSkill', () => {
 
     await user.selectOptions(screen.getByRole('listbox'), ['1']);
 
-    await user.click(screen.getByRole('button'));
+    await act(async () => {
+      await user.click(screen.getByRole('button'));
 
-    await waitFor(() =>
-      expect(screen.getByTestId(LOCATION_DISPLAY_TEST_ID)).toHaveTextContent(
-        /^\/users$/,
-      ),
-    );
+      await waitFor(() =>
+        expect(screen.getByTestId(LOCATION_DISPLAY_TEST_ID)).toHaveTextContent(
+          /^\/users$/,
+        ),
+      );
+    });
 
     expect(called).toBe(true);
   });
@@ -123,11 +126,13 @@ describe('AssignSkill', () => {
       pathName: '/users/1/assignSkills',
     });
 
-    await user.click(screen.getByRole('button'));
+    await act(async () => {
+      await user.click(screen.getByRole('button'));
 
-    expect(await screen.findByRole('alert')).toHaveTextContent(
-      'An error has occurred!',
-    );
+      expect(await screen.findByRole('alert')).toHaveTextContent(
+        'An error has occurred!',
+      );
+    });
 
     expect(screen.getByTestId(LOCATION_DISPLAY_TEST_ID)).toHaveTextContent(
       /^\/users\/1\/assignSkills$/,

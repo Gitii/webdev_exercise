@@ -1,4 +1,4 @@
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import buildEndpointUrl from '../../../../api/endpoint';
 import {
@@ -87,9 +87,13 @@ describe('ListUsers', () => {
 
     const { user } = render(<UserList />);
 
-    await user.click(screen.getByRole('button', { name: 'Add Random Users' }));
+    await act(async () => {
+      await user.click(
+        screen.getByRole('button', { name: 'Add Random Users' }),
+      );
 
-    await waitFor(() => expect(added).toBe(true));
+      await waitFor(() => expect(added).toBe(true));
+    });
   });
 
   it('should delete all users when clicking on the delete button', async () => {
@@ -110,9 +114,13 @@ describe('ListUsers', () => {
 
     const { user } = render(<UserList />);
 
-    await user.click(screen.getByRole('button', { name: 'Remove All Users' }));
+    await act(async () => {
+      await user.click(
+        screen.getByRole('button', { name: 'Remove All Users' }),
+      );
 
-    await waitFor(() => expect(deleted).toBe(true));
+      await waitFor(() => expect(deleted).toBe(true));
+    });
   });
 
   it('should navigate to skill assignment page when clicked on the assign button', async () => {
